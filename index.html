@@ -1,36 +1,156 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
+<head>
     <meta charset="utf-8">
     <title></title>
-    <link rel="stylesheet" href="css/styles.css">
-  </head>
-  <body>
+    <style>
+        body {
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        body {
+            font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+            font-size: 14px;
+            background-image: url(../images/bgsprt.png);
+            background-size: 100%;
+            background-repeat: repeat-y;
+        }
+
+        header {
+            padding: 16px 14px;
+            font-weight: bold;
+            font-size: 26px;
+            color: #673AB7;
+            background-color: #ffffff;
+        }
+
+        .main-nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #f6f5f5;
+        }
+
+            .main-nav ul li {
+                float: left;
+            }
+
+                .main-nav ul li a {
+                    display: block;
+                    color: #673AB7;
+                    text-align: center;
+                    padding: 14px 16px;
+                    text-decoration: none;
+                    font-size: 14px;
+                    font-weight: bold;
+                }
+
+                    .main-nav ul li a:hover:not(.active) {
+                        color: #ffffff;
+                        background-color: #673AB7;
+                    }
+
+        .active {
+            background-color: #673AB7;
+            color: #ffffff !important;
+        }
+
+        .transparentBtn-a {
+            background-color: transparent;
+            font-weight: bold;
+            float: right !important;
+        }
+
+            .transparentBtn-a a:hover {
+                background-color: transparent;
+                color: #673AB7;
+            }
+
+        .form-container {
+            margin: 7% auto 0px;
+            width: 100%;
+            max-width: 468px;
+            background-color: #ffffff;
+            padding: 50px 30px;
+            border-radius: 14px;
+            -webkit-box-shadow: 0px 0px 14px -2px rgba(140,140,140,0.68);
+            -moz-box-shadow: 0px 0px 14px -2px rgba(140,140,140,0.68);
+            box-shadow: 0px 0px 14px -2px rgba(140,140,140,0.68);
+        }
+
+        label {
+            color: #673AB7;
+        }
+
+        input[type=text], input[type=password] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 16px;
+        }
+
+        input[type=submit], input[type=submit]:hover {
+            background-color: transparent;
+            border-radius: 4px;
+            border: 1px solid #673AB7;
+            color: #673AB7;
+            padding: 8px 10px;
+            cursor: pointer;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        .marginTop-md {
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid blue;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
     <header>
-      Project Title
+        Demo Project
     </header>
     <nav class="main-nav">
-      <ul>
-        <li><a href="#home" class="active">Home</a></li>
-        <li><a href="#assets">Assets</a></li>
-        <li><a href="#checklist">Checklist</a></li>
-        <li class="transparentBtn-a"><a href="#logout">Logout</a></li>
-      </ul>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#assets" class="active">Assets</a></li>
+            <li><a href="#checklist">Checklist</a></li>
+            <li class="transparentBtn-a"><a href="{{ url_for('logout') }}">Logout</a></li>
+        </ul>
     </nav>
     <section>
-      <div class="form-container">
-          <form action="" method="">
-            <label for="userName">User Name</label>
-            <input type="text" id="userName" name="userName" placeholder="">
-
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" placeholder="">
-            <div class="text-right marginTop-md">
-              <input type="submit" value="Submit">
-            </div>
-          </form>
-      </div>
+        <div>
+            <h1 style="font-size:30px;text-align:center">Asset details:</h1>
+            {% if data %}
+            <table align="center">
+                {% for row in data %}
+                <tr>
+                    {% for cell in row %}
+                    <td>{{ cell }}</td>
+                    {% endfor %}
+                    <td><a href="#del">Delete</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+            {% endif %}
+        </div>        
     </section>
 
-  </body>
+</body>
 </html>
